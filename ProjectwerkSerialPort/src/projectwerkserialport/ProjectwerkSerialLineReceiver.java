@@ -10,6 +10,8 @@ import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,13 +36,21 @@ public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
     }
 
     
-    public ProjectwerkSerialLineReceiver(int comIndex, int baudrate, boolean enableDebugging) throws Exception {
+    public ProjectwerkSerialLineReceiver(int comIndex, int baudrate, boolean enableDebugging) {
         this.enableDebugMessages = enableDebugging;
         if (SerialPort.getCommPorts().length <= 0) {
-            throw new Exception("No COM ports available. Is the Arduino connected?");
+            try {
+                throw new Exception("No COM ports available. Is the Arduino connected?");
+            } catch (Exception ex) {
+                Logger.getLogger(ProjectwerkSerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             if (comIndex >= SerialPort.getCommPorts().length) {
-                throw new Exception("Incorrect comIndex. No such port with that index.");
+                try {
+                    throw new Exception("Incorrect comIndex. No such port with that index.");
+                } catch (Exception ex) {
+                    Logger.getLogger(ProjectwerkSerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             comPort = SerialPort.getCommPorts()[comIndex];
             if (comPort.openPort()) {
@@ -50,7 +60,11 @@ public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
                 setBaudRate(baudrate);
                 comPort.addDataListener(this);
             } else {
-                throw new Exception("Could not open port. Is another program using it?");
+                try {
+                    throw new Exception("Could not open port. Is another program using it?");
+                } catch (Exception ex) {
+                    Logger.getLogger(ProjectwerkSerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

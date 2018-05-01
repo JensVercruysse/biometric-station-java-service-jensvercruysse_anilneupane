@@ -16,7 +16,7 @@ public class ProjectwerkSerialPort {
     private final static int BAUD_RATE = 115200;
     private final static int COM_PORT_INDEX = 0;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         ProjectwerkSerialLineReceiver receiver = new ProjectwerkSerialLineReceiver(COM_PORT_INDEX, BAUD_RATE, false);
         
