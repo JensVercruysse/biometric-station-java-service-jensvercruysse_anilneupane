@@ -21,12 +21,15 @@ public class ProjectwerkSerialDataPusher implements IMqttMessageHandler{
     private final int COM_PORT_INDEX = 0;
     
     ProjectwerkSerialLineReceiver receiver = new ProjectwerkSerialLineReceiver(COM_PORT_INDEX, BAUD_RATE, false);
+    ProjectwerkDataParser parser = new ProjectwerkDataParser();
             
     private void receive(){
             receiver.setLineListener(new ProjectwerkSerialPortLineListener() {
             @Override
-            public void serialLineEvent(ProjectwerkSerialData data) {
-            System.out.println("Received data from the serial port: " + data.getDataAsString());  
+            public void serialLineEvent(SerialData data) {
+                String dataString = data.getDataAsString();
+                SensorData dataFromArduino = parser.parse(dataString);
+                System.out.println("Received data from the serial port: " + dataFromArduino);  
             }
         });
     }

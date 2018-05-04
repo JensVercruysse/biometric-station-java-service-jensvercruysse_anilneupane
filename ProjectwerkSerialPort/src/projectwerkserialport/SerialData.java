@@ -3,19 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package projectwerkserialport;
 
 /**
  *
- * @author jensv
+ * @author nicod
  */
-
-public class ProjectwerkSerialData {
+class SerialData {
     
     private byte[] data = new byte[0];
     
-    public ProjectwerkSerialData(byte[] data) {
+    public SerialData(byte[] data) {
         this.data = data.clone();
     }
     
@@ -26,5 +24,4 @@ public class ProjectwerkSerialData {
     public byte[] getDataAsBytes() {
         return data.clone();
     }
-    
 }

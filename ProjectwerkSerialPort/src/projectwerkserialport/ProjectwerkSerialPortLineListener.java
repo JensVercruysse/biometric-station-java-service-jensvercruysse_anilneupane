@@ -13,5 +13,5 @@ package projectwerkserialport;
 
 public interface ProjectwerkSerialPortLineListener {
     
-    public abstract void serialLineEvent(ProjectwerkSerialData data);
+    public abstract void serialLineEvent(SerialData data);
 }

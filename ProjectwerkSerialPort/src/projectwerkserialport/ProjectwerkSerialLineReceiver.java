@@ -135,7 +135,7 @@ public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
             if (enableDebugMessages) {
                 System.out.println("Data = " + new String(Arrays.copyOf(dataBuffer, iNextData)));
             }
-            listener.serialLineEvent(new ProjectwerkSerialData(Arrays.copyOf(dataBuffer, iNextData)));
+            listener.serialLineEvent(new SerialData(Arrays.copyOf(dataBuffer, iNextData)));
         } else if (enableDebugMessages) {
             System.out.println("No listener registered. Cannot deliver data.");
         }
