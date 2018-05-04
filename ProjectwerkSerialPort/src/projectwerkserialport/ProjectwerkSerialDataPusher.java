@@ -13,9 +13,10 @@ import be.vives.oop.mqtt.chatservice.MqttChatService;
  *
  * @author jensv
  */
-public class ProjectwerkSerialDataPusher implements IMqttMessageHandler{
+public class ProjectwerkSerialDataPusher //implements IMqttMessageHandler
+{
 
-    private MqttChatService chatService;
+    //private MqttChatService chatService;
     
     private final int BAUD_RATE = 115200;
     private final int COM_PORT_INDEX = 0;
@@ -29,22 +30,22 @@ public class ProjectwerkSerialDataPusher implements IMqttMessageHandler{
             public void serialLineEvent(SerialData data) {
                 String dataString = data.getDataAsString();
                 SensorData dataFromArduino = parser.parse(dataString);
-                //System.out.println("Received data from the serial port: " + dataFromArduino);  
+                System.out.println("Received data from the serial port: " + dataFromArduino);  
             }
         });
     }
 
-    public ProjectwerkSerialDataPusher() {
-    chatService = new MqttChatService();
-    chatService.setMessageHandler(this);
-    }
- 
-    private void send(){
-        chatService.sendMessage("Hello World");
-    }
-
-    @Override
-    public void messageArrived(String channel, String message) {
-    System.out.println("Received chat messages (on channel = " + channel + "): " + message);
-    }    
+//    public ProjectwerkSerialDataPusher() {
+//    chatService = new MqttChatService();
+//    chatService.setMessageHandler(this);
+//    }
+// 
+//    private void send(){
+//        chatService.sendMessage("Hello World");
+//    }
+//
+//    @Override
+//    public void messageArrived(String channel, String message) {
+//    System.out.println("Received chat messages (on channel = " + channel + "): " + message);
+//    }    
 }
