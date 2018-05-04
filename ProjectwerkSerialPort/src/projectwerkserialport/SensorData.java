@@ -41,5 +41,4 @@ public class SensorData {
         public int accelero_z(){
         return accelero_z;
     }
-    
 }
