@@ -26,6 +26,7 @@ public class SensorData {
         this.accelero_y = accelero_y;
         this.accelero_z = accelero_z;
     }
+    
     public int heartbeat(){
         return heartbeat;
     }
@@ -40,5 +41,9 @@ public class SensorData {
     }
         public int accelero_z(){
         return accelero_z;
+    }
+    @Override
+    public String toString(){
+        return "[Heartbeat: " + heartbeat + " | Temperature: " + temperature +  " | Accelerator: " + accelero_x + " | "  +accelero_y + " | " + accelero_z + " ]";
     }
 }

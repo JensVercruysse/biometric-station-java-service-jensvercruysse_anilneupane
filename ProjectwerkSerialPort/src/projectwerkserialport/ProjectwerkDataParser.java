@@ -30,6 +30,7 @@ public class ProjectwerkDataParser {
 
         return new SensorData(heartbeat, temperature, accelero_x, accelero_y, accelero_z);
     }
+    
 
     private boolean isValidString(String dataString) {
 
