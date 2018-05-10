@@ -23,7 +23,7 @@ public class ProjectwerkSerialDataPusher implements IMqttDataHandler {
     }
  
     private void send(){
-        biometricDataService.sendData("Hello World");
+        biometricDataService.sendData(SensorData.getHeartbeat() + "");
     }
 
     @Override
