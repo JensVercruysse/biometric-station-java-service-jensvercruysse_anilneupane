@@ -5,8 +5,10 @@
  */
 package projectwerkserialport;
 
-import be.vives.oop.mqtt.chatservice.IMqttMessageHandler;
-import be.vives.oop.mqtt.chatservice.MqttChatService;
+import mqttbiometricdataservice.IMqttDataHandler;
+import mqttbiometricdataservice.MqttBiometricDataService;
+
+
 
 
 
@@ -15,22 +17,22 @@ import be.vives.oop.mqtt.chatservice.MqttChatService;
  *
  * @author jensv
  */
-public class ProjectwerkSerialDataPusher implements IMqttMessageHandler {
+public class ProjectwerkSerialDataPusher implements IMqttDataHandler {
 
-    private MqttChatService chatService;
+    private MqttBiometricDataService biometricDataService;
 
     public ProjectwerkSerialDataPusher() {
-    chatService = new MqttChatService();
-    chatService.setMessageHandler(this);
+    biometricDataService = new MqttBiometricDataService();
+    biometricDataService.setDataHandler(this);
     send();
     }
  
     private void send(){
-        chatService.sendMessage("Hello World");
+        biometricDataService.sendData("Hello World");
     }
 
     @Override
-    public void messageArrived(String channel, String message) {
-    System.out.println("Received chat messages (on channel = " + channel + "): " + message);
+    public void dataArrived(String channel, String message) {
+    System.out.println("Received data (on channel = " + channel + "): " + message);
     }    
 }
