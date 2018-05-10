@@ -8,11 +8,6 @@ package projectwerkserialport;
 import mqttbiometricdataservice.IMqttDataHandler;
 import mqttbiometricdataservice.MqttBiometricDataService;
 
-
-
-
-
-
 /**
  *
  * @author jensv
@@ -32,7 +27,7 @@ public class ProjectwerkSerialDataPusher implements IMqttDataHandler {
     }
 
     @Override
-    public void dataArrived(String channel, String message) {
-    System.out.println("Received data (on channel = " + channel + "): " + message);
+    public void dataArrived(String channel, String data) {
+    System.out.println("Received data (on channel = " + channel + "): " + data);
     }    
 }
