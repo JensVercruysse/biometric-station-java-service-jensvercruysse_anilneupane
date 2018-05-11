@@ -17,17 +17,20 @@ public class ProjectwerkSerialPort {
 
     public static void main(String[] args) {
 
-    ProjectwerkSerialLineReceiver receiver = new ProjectwerkSerialLineReceiver(COM_PORT_INDEX, BAUD_RATE, false);
-    ProjectwerkDataParser parser = new ProjectwerkDataParser();
-    //ProjectwerkSerialDataPusher pusher = new ProjectwerkSerialDataPusher();
+        // Best deze classes ook hernoemen !! Beetje onduidelijk zo
+        ProjectwerkSerialLineReceiver receiver = new ProjectwerkSerialLineReceiver(COM_PORT_INDEX, BAUD_RATE, false);
+        ProjectwerkDataParser parser = new ProjectwerkDataParser();
+        BiometricDataPusher pusher = new BiometricDataPusher();
             
 
-            receiver.setLineListener(new ProjectwerkSerialPortLineListener() {
+        receiver.setLineListener(new ProjectwerkSerialPortLineListener() {
             @Override
             public void serialLineEvent(SerialData data) {
                 String dataString = data.getDataAsString();
                 SensorData dataFromArduino = parser.parse(dataString);               
                 System.out.println("Received data from the serial port: " + dataFromArduino); 
+                
+                // Nu kan je hier de send() methode aanroepen op pusher met de correcte data
             }           
         });
     }
