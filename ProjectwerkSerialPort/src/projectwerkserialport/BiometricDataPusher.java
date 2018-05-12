@@ -16,25 +16,41 @@ public class BiometricDataPusher implements IMqttDataHandler {
     
     private MqttBiometricDataService biometricDataServiceHeartbeat;
     private MqttBiometricDataService biometricDataServiceTemperature;
-    private MqttBiometricDataService biometricDataServiceAcceleroX;
-    private MqttBiometricDataService biometricDataServiceAcceleroY;
-    private MqttBiometricDataService biometricDataServiceAcceleroZ;
+    private MqttBiometricDataService biometricDataServiceAccelero_X;
+    private MqttBiometricDataService biometricDataServiceAccelero_Y;
+    private MqttBiometricDataService biometricDataServiceAccelero_Z;
 
     public BiometricDataPusher() {
         biometricDataServiceHeartbeat = new MqttBiometricDataService();
         biometricDataServiceHeartbeat.setDataHandler(this);
         biometricDataServiceTemperature = new MqttBiometricDataService();
         biometricDataServiceTemperature.setDataHandler(this);
-        biometricDataServiceAcceleroX = new MqttBiometricDataService();
-        biometricDataServiceAcceleroX.setDataHandler(this);
-        biometricDataServiceAcceleroY = new MqttBiometricDataService();
-        biometricDataServiceAcceleroY.setDataHandler(this);
-        biometricDataServiceAcceleroZ = new MqttBiometricDataService();
-        biometricDataServiceAcceleroZ.setDataHandler(this);
+        biometricDataServiceAccelero_X = new MqttBiometricDataService();
+        biometricDataServiceAccelero_X.setDataHandler(this);
+        biometricDataServiceAccelero_Y = new MqttBiometricDataService();
+        biometricDataServiceAccelero_Y.setDataHandler(this);
+        biometricDataServiceAccelero_Z = new MqttBiometricDataService();
+        biometricDataServiceAccelero_Z.setDataHandler(this);
     }
  
-    public void send(String data){
+    public void sendHeartbeat(String data){
         biometricDataServiceHeartbeat.sendData(data);
+    }
+    
+    public void sendTemperature(String data){
+        biometricDataServiceTemperature.sendData(data);
+    }
+    
+    public void sendAcc_X_Value(String data){
+        biometricDataServiceAccelero_X.sendData(data);
+    }
+        
+    public void sendAcc_Y_Value(String data){
+        biometricDataServiceAccelero_Y.sendData(data);
+    }
+        
+    public void sendAcc_Z_Value(String data){
+        biometricDataServiceAccelero_Z.sendData(data);
     }
 
     @Override

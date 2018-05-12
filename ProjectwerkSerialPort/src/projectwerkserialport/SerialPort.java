@@ -10,7 +10,7 @@ package projectwerkserialport;
  * @author jensv
  */
 public class SerialPort {
-    
+
     private final static int BAUD_RATE = 115200;
     private final static int COM_PORT_INDEX = 0;
 
@@ -19,22 +19,21 @@ public class SerialPort {
         SerialLineReceiver receiver = new SerialLineReceiver(COM_PORT_INDEX, BAUD_RATE, false);
         DataParser parser = new DataParser();
         BiometricDataPusher pusher = new BiometricDataPusher();
-            
 
         receiver.setLineListener(new SerialPortLineListener() {
             @Override
             public void serialLineEvent(SerialData data) {
                 String dataString = data.getDataAsString();
-                SensorData dataFromArduino = parser.parse(dataString);               
-                System.out.println("Received data from the serial port: " + dataFromArduino); 
-                
-                pusher.send(dataFromArduino.getHeartbeat() + "");
-                pusher.send(dataFromArduino.getTemperature() + "");
-                pusher.send(dataFromArduino.getAccelero_x() + "");
-                pusher.send(dataFromArduino.getAccelero_y() + "");
-                pusher.send(dataFromArduino.getAccelero_z() + "");
+                SensorData dataFromArduino = parser.parse(dataString);
+                System.out.println("Received data from the serial port: " + dataFromArduino);
+
+                pusher.sendHeartbeat(dataFromArduino.getHeartbeat() + "");
+                pusher.sendTemperature(dataFromArduino.getTemperature() + "");
+                pusher.sendAcc_X_Value(dataFromArduino.getAccelero_x() + "");
+                pusher.sendAcc_Y_Value(dataFromArduino.getAccelero_y() + "");
+                pusher.sendAcc_Z_Value(dataFromArduino.getAccelero_z() + "");
                 // Nu kan je hier de send() methode aanroepen op pusher met de correcte data
-            }           
+            }
         });
     }
-    }
+}
