@@ -13,6 +13,7 @@ import mqttbiometricdataservice.MqttBiometricDataService;
  * @author jensv
  */
 public class BiometricDataPusher implements IMqttDataHandler {
+<<<<<<< HEAD
     
     private MqttBiometricDataService biometricDataServiceHeartbeat;
     private MqttBiometricDataService biometricDataServiceTemperature;
@@ -51,9 +52,41 @@ public class BiometricDataPusher implements IMqttDataHandler {
         
     public void sendAcc_Z_Value(String data){
         biometricDataServiceAccelero_Z.sendData(data);
+=======
+
+    // Ga je alle data op 1 channel versturen?
+    // Zoja, ok ook goed maar dan moet je aan de javafx kant parsen
+    // Zonee, dan heb je meerdere services nodig
+    private MqttBiometricDataService biometricDataService;
+
+    public BiometricDataPusher() {
+        biometricDataService = new MqttBiometricDataService();
+        biometricDataService.setDataHandler(this);
+
+        // Versturen ga je niet hier doen, maar enkel wanneer je data ontvangt op
+        // de seriele poort
+        //send();
+    }
+ 
+    // Je hebt hier data van buiten de class nodig, met andere woorden je moet een
+    // object van de class SensorData als argument aan de methode toevoegen.
+    // Dan moet je de methode ook public maken want anders kan je ze niet buiten deze
+    // class gebruiken
+    // Wel mooi dat je aparte class voor dit maakt !!!!
+    public void send(SensorData data){
+        biometricDataService.sendData(data.getHeartbeat() + "");
+>>>>>>> 31bfbd8c47561e18dd8c7c62b5023cdb01640509
     }
 
     @Override
     public void dataArrived(String channel, String data) {
+<<<<<<< HEAD
     }    
 }
+=======
+        // Deze mag je in principe leeg laten want je moet geen data ontvangen via mqtt
+        // met deze app
+        //System.out.println("Received data (on channel = " + channel + "): " + data);
+    }    
+}
+>>>>>>> 31bfbd8c47561e18dd8c7c62b5023cdb01640509
