@@ -76,14 +76,10 @@ public class BiometricDataPusher implements IMqttDataHandler {
     public void send(SensorData data){
         biometricDataService.sendData(data.getHeartbeat() + "");
 >>>>>>> 31bfbd8c47561e18dd8c7c62b5023cdb01640509
-    }
+    }s
 
     @Override
-    public void dataArrived(String channel, String data) {
-<<<<<<< HEAD
-    }    
-}
-=======
+
         // Deze mag je in principe leeg laten want je moet geen data ontvangen via mqtt
         // met deze app
         //System.out.println("Received data (on channel = " + channel + "): " + data);
