@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author jensv
  */
 
-public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
+public class SerialLineReceiver implements SerialPortDataListener {
     
     private final static int BAUD_RATE = 115200;
     private final static int COM_PORT = 7;
@@ -29,27 +29,27 @@ public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
     private byte delimiter = '\n';
     private boolean enableDebugMessages = false;
     
-    private ProjectwerkSerialPortLineListener listener = null;
+    private SerialPortLineListener listener = null;
     
-    public ProjectwerkSerialLineReceiver() throws Exception {
+    public SerialLineReceiver() throws Exception {
         this(COM_PORT - 1, BAUD_RATE, false);
     }
 
     
-    public ProjectwerkSerialLineReceiver(int comIndex, int baudrate, boolean enableDebugging) {
+    public SerialLineReceiver(int comIndex, int baudrate, boolean enableDebugging) {
         this.enableDebugMessages = enableDebugging;
         if (SerialPort.getCommPorts().length <= 0) {
             try {
                 throw new Exception("No COM ports available. Is the Arduino connected?");
             } catch (Exception ex) {
-                Logger.getLogger(ProjectwerkSerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             if (comIndex >= SerialPort.getCommPorts().length) {
                 try {
                     throw new Exception("Incorrect comIndex. No such port with that index.");
                 } catch (Exception ex) {
-                    Logger.getLogger(ProjectwerkSerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             comPort = SerialPort.getCommPorts()[comIndex];
@@ -63,7 +63,7 @@ public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
                 try {
                     throw new Exception("Could not open port. Is another program using it?");
                 } catch (Exception ex) {
-                    Logger.getLogger(ProjectwerkSerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SerialLineReceiver.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -85,7 +85,7 @@ public class ProjectwerkSerialLineReceiver implements SerialPortDataListener {
         comPort.closePort();
     }
     
-    public void setLineListener(ProjectwerkSerialPortLineListener listener) {
+    public void setLineListener(SerialPortLineListener listener) {
         this.listener = listener;
     }
     

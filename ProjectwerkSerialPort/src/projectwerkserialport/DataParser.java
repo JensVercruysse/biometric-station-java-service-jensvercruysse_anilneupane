@@ -9,7 +9,7 @@ package projectwerkserialport;
  *
  * @author jensv
  */
-public class ProjectwerkDataParser {
+public class DataParser {
 
     private final static String OPENING_FLAG = "[";
     private final static String SEPARATOR_1 = "|";
