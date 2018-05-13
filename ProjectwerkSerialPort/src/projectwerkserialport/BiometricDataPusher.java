@@ -21,15 +21,15 @@ public class BiometricDataPusher implements IMqttDataHandler {
     private MqttBiometricDataService biometricDataServiceAccelero_Z;
 
     public BiometricDataPusher() {
-        biometricDataServiceHeartbeat = new MqttBiometricDataService();
+        biometricDataServiceHeartbeat = new MqttBiometricDataService("jens", "heartbeat");
         biometricDataServiceHeartbeat.setDataHandler(this);
-        biometricDataServiceTemperature = new MqttBiometricDataService();
+        biometricDataServiceTemperature = new MqttBiometricDataService("jens", "temperature");
         biometricDataServiceTemperature.setDataHandler(this);
-        biometricDataServiceAccelero_X = new MqttBiometricDataService();
+        biometricDataServiceAccelero_X = new MqttBiometricDataService("jens", "accelero_x_value");
         biometricDataServiceAccelero_X.setDataHandler(this);
-        biometricDataServiceAccelero_Y = new MqttBiometricDataService();
+        biometricDataServiceAccelero_Y = new MqttBiometricDataService("jens", "accelero_y_value");
         biometricDataServiceAccelero_Y.setDataHandler(this);
-        biometricDataServiceAccelero_Z = new MqttBiometricDataService();
+        biometricDataServiceAccelero_Z = new MqttBiometricDataService("jens", "accelero_z_value");
         biometricDataServiceAccelero_Z.setDataHandler(this);
     }
  
