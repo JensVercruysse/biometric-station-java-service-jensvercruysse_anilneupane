@@ -13,11 +13,11 @@ public class SensorData {
 
     private int heartbeat = 0;
     private double temperature = 0;
-    private int accelero_x = 0;
-    private int accelero_y = 0;
-    private int accelero_z = 0;
+    private double accelero_x = 0;
+    private double accelero_y = 0;
+    private double accelero_z = 0;
 
-    public SensorData(int heartbeat, double temperature, int accelero_x, int accelero_y, int accelero_z) {
+    public SensorData(int heartbeat, double temperature, double accelero_x, double accelero_y, double accelero_z) {
         this.heartbeat = heartbeat;
         this.temperature = temperature;
         this.accelero_x = accelero_x;
@@ -33,15 +33,15 @@ public class SensorData {
         return temperature;
     }
 
-    public int getAccelero_x() {
+    public double getAccelero_x() {
         return accelero_x;
     }
 
-    public int getAccelero_y() {
+    public double getAccelero_y() {
         return accelero_y;
     }
 
-    public int getAccelero_z() {
+    public double getAccelero_z() {
         return accelero_z;
     }
 

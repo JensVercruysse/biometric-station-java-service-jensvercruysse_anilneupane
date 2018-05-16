@@ -25,18 +25,21 @@ public class SerialPort {
             public void serialLineEvent(SerialData data) {
                 String dataString = data.getDataAsString();
                 SensorData dataFromArduino = parser.parse(dataString);
-                System.out.println("Received data from the serial port: " + dataFromArduino);
+                if (dataFromArduino != null) {
+                    System.out.println("Received data from the serial port: " + dataFromArduino);
 
-                pusher.sendHeartbeat(dataFromArduino.getHeartbeat() + "");
-                System.out.println("Heartbeat data has been sent to mqttt.");
-                pusher.sendTemperature(dataFromArduino.getTemperature() + "");
-                System.out.println("Temperature data has been sent to mqttt.");
-                pusher.sendAcc_X_Value(dataFromArduino.getAccelero_x() + "");
-                System.out.println("Accelero_X data has been sent to mqttt.");
-                pusher.sendAcc_Y_Value(dataFromArduino.getAccelero_y() + "");
-                System.out.println("Accelero_Y data has been sent to mqttt.");
-                pusher.sendAcc_Z_Value(dataFromArduino.getAccelero_z() + "");
-                System.out.println("Accelero_Z data has been sent to mqttt.");
+                    pusher.sendHeartbeat(dataFromArduino.getHeartbeat() + "");
+                    System.out.println("Heartbeat data has been sent to mqttt.");
+                    pusher.sendTemperature(dataFromArduino.getTemperature() + "");
+                    System.out.println("Temperature data has been sent to mqttt.");
+                    pusher.sendAcc_X_Value(dataFromArduino.getAccelero_x() + "");
+                    System.out.println("Accelero_X data has been sent to mqttt.");
+                    pusher.sendAcc_Y_Value(dataFromArduino.getAccelero_y() + "");
+                    System.out.println("Accelero_Y data has been sent to mqttt.");
+                    pusher.sendAcc_Z_Value(dataFromArduino.getAccelero_z() + "");
+                    System.out.println("Accelero_Z data has been sent to mqttt.");
+                }
+
             }
         });
     }

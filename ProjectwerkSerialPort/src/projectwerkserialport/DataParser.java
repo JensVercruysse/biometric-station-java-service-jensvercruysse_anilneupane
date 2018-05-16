@@ -22,13 +22,20 @@ public class DataParser {
         if (!isValidString(dataString)) {
             return null;
         }
-        int heartbeat = Integer.parseInt(dataString.substring(dataString.indexOf(OPENING_FLAG) + 1, dataString.indexOf(SEPARATOR_1)));
-        double temperature = Double.parseDouble(dataString.substring(dataString.indexOf(SEPARATOR_1) + 1, dataString.indexOf(SEPARATOR_2)));
-        int accelero_x = Integer.parseInt(dataString.substring(dataString.indexOf(SEPARATOR_2) + 1, dataString.indexOf(SEPARATOR_3)));
-        int accelero_y = Integer.parseInt(dataString.substring(dataString.indexOf(SEPARATOR_3) + 1, dataString.indexOf(SEPARATOR_4)));
-        int accelero_z = Integer.parseInt(dataString.substring(dataString.indexOf(SEPARATOR_4) + 1, dataString.indexOf(CLOSING_FLAG)));
+        
+        try {
+            int heartbeat = Integer.parseInt(dataString.substring(dataString.indexOf(OPENING_FLAG) + 1, dataString.indexOf(SEPARATOR_1)));
+            double temperature = Double.parseDouble(dataString.substring(dataString.indexOf(SEPARATOR_1) + 1, dataString.indexOf(SEPARATOR_2)));
+            double accelero_x = Double.parseDouble(dataString.substring(dataString.indexOf(SEPARATOR_2) + 1, dataString.indexOf(SEPARATOR_3)));
+            double accelero_y = Double.parseDouble(dataString.substring(dataString.indexOf(SEPARATOR_3) + 1, dataString.indexOf(SEPARATOR_4)));
+            double accelero_z = Double.parseDouble(dataString.substring(dataString.indexOf(SEPARATOR_4) + 1, dataString.indexOf(CLOSING_FLAG)));
 
-        return new SensorData(heartbeat, temperature, accelero_x, accelero_y, accelero_z);
+            return new SensorData(heartbeat, temperature, accelero_x, accelero_y, accelero_z);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid data received");
+        }
+        return null;
+
     }
     
 
